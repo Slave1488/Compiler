@@ -29,7 +29,7 @@ namespace compiler
 
 		const Terminal Tag;
 
-		explicit Token(char sumbol): Token(define(sumbol))
+		explicit Token(const char& sumbol): Token(define(sumbol))
 		{
 		}
 	protected:
@@ -57,7 +57,7 @@ namespace compiler
 	{
 		const int Value;
 
-		Num(int value): Token(NUM), Value(value)
+		Num(const int& value): Token(NUM), Value(value)
 		{
 		}
 	};
@@ -66,7 +66,7 @@ namespace compiler
 	{
 		const std::string Lexeme;
 	protected:
-		Word(Terminal terminal, std::string lexeme): Token(terminal), Lexeme(lexeme)
+		Word(const Terminal& terminal, const std::string& lexeme): Token(terminal), Lexeme(lexeme)
 		{
 		}
 	};
@@ -79,7 +79,7 @@ namespace compiler
 			is >> peek;
 		}
 
-		Token scan()
+		const Token scan()
 		{
 			while (PeekIsSpace())
 			{
@@ -109,17 +109,17 @@ namespace compiler
 		char peek;
 		map<std::string, Word> WordTable;
 
-		bool PeekIsSpace() const
+		const bool PeekIsSpace() const
 		{
 			return !EndOfFile() && peek == ' ';
 		}
 
-		bool PeekIsDigit() const
+		const bool PeekIsDigit() const
 		{
 			return !EndOfFile() && '0' <= peek && peek <= '9';
 		}
 
-		bool EndOfFile() const
+		const bool EndOfFile() const
 		{
 			return is.eof();
 		}
