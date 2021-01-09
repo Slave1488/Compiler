@@ -21,7 +21,7 @@ enum Terminal
 
 struct Token
 {
-	static const Token& Fail = Token(FAIL);
+	static const Token Fail;
 
 	const Terminal Tag;
 
@@ -46,6 +46,8 @@ private:
 	}
 };
 
+const Token Token::Fail = Token(FAIL);
+
 struct Num: public Token
 {
 	const int Value;
@@ -67,7 +69,7 @@ protected:
 class Lexer
 {
 public:
-	Lexer(istream& is): this->is(is)
+	Lexer(istream& is): is(is)
 	{
 		is >> peek;
 	}
@@ -153,6 +155,7 @@ int main()
 	ifstream ifs;
 	ifs.open("source.my");
 	Lexer lexer(ifs);
-	while(true)
-		cout << lexer.scan().Tag << '\n';
+	int buf;
+	while((buf = lexer.scan().Tag) != -1)
+		cout << buf << '\n';
 }
