@@ -1,12 +1,12 @@
 #include <iostream>
 #include <fstream>
 
-#include "lexer.hpp"
+#include "lexer.h"
 
 using std::cout;
 using std::ifstream;
 
-namespace compiler
+/* namespace compiler
 {
 	bool derive_terminal(vector<Token>& string, int& lookahead, Terminal terminal)
 	{
@@ -37,7 +37,7 @@ namespace compiler
 		int lookahead = 0;
 		return derive_list(string, lookahead) && lookahead == string.size();
 	}
-}
+} */
 
 using namespace lexer;
 
@@ -45,9 +45,9 @@ int main()
 {
 	ifstream ifs;
 	ifs.open("source.my");
-	lexer::Lexer lexer(ifs);
-	lexer::Terminal buf;
-	while((buf = lexer.scan().Tag) != EOF_)
-		cout << buf << '\n';
-	cout << buf << '\n';
+	Lexer lexer(ifs);
+	Terminal buf;
+	while((buf = lexer.scan().tag) != Terminal::EOF_)
+		cout << int(buf) << '\n';
+	cout << int(buf) << '\n';
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include "terminal.h"
 
 namespace lexer

@@ -1,6 +1,6 @@
+#pragma once
 #include <map>
 
-#include "token.h"
 #include "word.h"
 
 namespace lexer
